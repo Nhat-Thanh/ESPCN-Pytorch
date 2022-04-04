@@ -2,7 +2,7 @@
 
 Implementation of ESPCN model in **Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network** paper with Pytorch. 
 
-Tensorflow version: https://github.com/Nhat-Thanh/ESPCN-TF
+**Tensorflow version**: https://github.com/Nhat-Thanh/ESPCN-TF
 
 I used Adam with optimize tuned hyperparameters instead of SGD + Momentum. 
 
