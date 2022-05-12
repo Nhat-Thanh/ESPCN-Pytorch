@@ -6,29 +6,36 @@ import torch
 import os
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--steps",          type=int, default=100000,          help='-')
-parser.add_argument("--scale",          type=int, default=2,               help='-')
-parser.add_argument("--batch-size",     type=int, default=128,             help='-')
-parser.add_argument("--save-every",     type=int, default=1000,            help='-')
-parser.add_argument("--save-best-only", type=int, default=0,               help='-')
-parser.add_argument("--save-log",       type=int, default=0,               help='-')
-parser.add_argument("--ckpt-dir",       type=str, default="checkpoint/x2", help='-')
+parser.add_argument("--steps",          type=int, default=100000, help='-')
+parser.add_argument("--scale",          type=int, default=2,      help='-')
+parser.add_argument("--batch-size",     type=int, default=128,    help='-')
+parser.add_argument("--save-every",     type=int, default=1000,   help='-')
+parser.add_argument("--save-best-only", type=int, default=0,      help='-')
+parser.add_argument("--save-log",       type=int, default=0,      help='-')
+parser.add_argument("--ckpt-dir",       type=str, default="",     help='-')
 
 
 # -----------------------------------------------------------
 # global variables
 # -----------------------------------------------------------
 
-FLAG, unparsed = parser.parse_known_args()
-steps = FLAG.steps
-batch_size = FLAG.batch_size
-scale = FLAG.scale
-ckpt_dir = FLAG.ckpt_dir
-save_every = FLAG.save_every
+FLAGS, unparsed = parser.parse_known_args()
+steps = FLAGS.steps
+batch_size = FLAGS.batch_size
+save_every = FLAGS.save_every
+save_best_only = (FLAGS.save_best_only == 1)
+save_log = (FLAGS.save_log == 1)
+
+scale = FLAGS.scale
+if scale not in [2, 3, 4]:
+    ValueError("scale must be 2, 3, or 4")
+
+ckpt_dir = FLAGS.ckpt_dir
+if (ckpt_dir == "") or (ckpt_dir == "default"):
+    ckpt_dir = f"checkpoint/x{scale}"
+
 model_path = os.path.join(ckpt_dir, f"ESPCN-x{scale}.pt")
 ckpt_path = os.path.join(ckpt_dir, f"ckpt.pt")
-save_best_only = (FLAG.save_best_only == 1)
-save_log = (FLAG.save_log == 1)
 
 
 # -----------------------------------------------------------
