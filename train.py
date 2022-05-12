@@ -11,6 +11,7 @@ parser.add_argument("--scale",          type=int, default=2,               help=
 parser.add_argument("--batch-size",     type=int, default=128,             help='-')
 parser.add_argument("--save-every",     type=int, default=1000,            help='-')
 parser.add_argument("--save-best-only", type=int, default=0,               help='-')
+parser.add_argument("--save-log",       type=int, default=0,               help='-')
 parser.add_argument("--ckpt-dir",       type=str, default="checkpoint/x2", help='-')
 
 
@@ -27,6 +28,7 @@ save_every = FLAG.save_every
 model_path = os.path.join(ckpt_dir, f"ESPCN-x{scale}.pt")
 ckpt_path = os.path.join(ckpt_dir, f"ckpt.pt")
 save_best_only = (FLAG.save_best_only == 1)
+save_log = (FLAG.save_log == 1)
 
 
 # -----------------------------------------------------------
@@ -62,10 +64,9 @@ def main():
                 ckpt_path=ckpt_path, metric=PSNR)
 
     espcn.load_checkpoint(ckpt_path)
-    espcn.train(train_set, valid_set, 
-                steps=steps, batch_size=batch_size,
-                save_best_only=save_best_only, 
-                save_every=save_every)
+    espcn.train(train_set, valid_set, steps=steps, batch_size=batch_size,
+                save_best_only=save_best_only, save_every=save_every,
+                save_log=save_log, log_dir=ckpt_dir)
 
 if __name__ == "__main__":
     main()
