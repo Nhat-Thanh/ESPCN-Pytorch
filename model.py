@@ -6,7 +6,7 @@ import numpy as np
 
 class logger:
     def __init__(self, path, values) -> None:
-        self.path = path,
+        self.path = path
         self.values = values
         
 
@@ -66,10 +66,10 @@ class ESPCN:
         if (save_log) and (log_dir is None):
             ValueError("log_dir must be specified if save_log is True")
         os.makedirs(log_dir, exist_ok=True)
-        dict_logger = {"loss":       logger(path=os.path.join(log_dir, f"losses.npy"),      values=[]),
-                       "metric":     logger(path=os.path.join(log_dir, f"metrics.npy"),     values=[]),
-                       "val_loss":   logger(path=os.path.join(log_dir, f"val_losses.npy"),  values=[]),
-                       "val_metric": logger(path=os.path.join(log_dir, f"val_metrics.npy"), values=[])}
+        dict_logger = {"loss":       logger(path=os.path.join(log_dir, "losses.npy"),      values=[]),
+                       "metric":     logger(path=os.path.join(log_dir, "metrics.npy"),     values=[]),
+                       "val_loss":   logger(path=os.path.join(log_dir, "val_losses.npy"),  values=[]),
+                       "val_metric": logger(path=os.path.join(log_dir, "val_metrics.npy"), values=[])}
         for key in dict_logger.keys():
             path = dict_logger[key].path
             if exists(path):
