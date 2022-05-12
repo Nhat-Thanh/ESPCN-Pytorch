@@ -8,7 +8,6 @@ class logger:
     def __init__(self, path, values) -> None:
         self.path = path
         self.values = values
-        
 
 class ESPCN:
     def __init__(self, scale, device):

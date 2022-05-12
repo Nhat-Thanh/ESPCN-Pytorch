@@ -35,7 +35,7 @@ if (ckpt_dir == "") or (ckpt_dir == "default"):
     ckpt_dir = f"checkpoint/x{scale}"
 
 model_path = os.path.join(ckpt_dir, f"ESPCN-x{scale}.pt")
-ckpt_path = os.path.join(ckpt_dir, f"ckpt.pt")
+ckpt_path = os.path.join(ckpt_dir, "ckpt.pt")
 
 
 # -----------------------------------------------------------
