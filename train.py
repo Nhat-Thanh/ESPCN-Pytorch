@@ -28,7 +28,7 @@ save_log = (FLAGS.save_log == 1)
 
 scale = FLAGS.scale
 if scale not in [2, 3, 4]:
-    ValueError("scale must be 2, 3, or 4")
+    raise ValueError("scale must be 2, 3, or 4")
 
 ckpt_dir = FLAGS.ckpt_dir
 if (ckpt_dir == "") or (ckpt_dir == "default"):
